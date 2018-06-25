@@ -1,6 +1,5 @@
 import React, { PureComponent } from "react";
 import axios from "axios";
-import _ from "lodash";
 
 export default class CategoryField extends PureComponent {
   constructor(props) {
@@ -23,7 +22,7 @@ export default class CategoryField extends PureComponent {
     this.setState({ ready: false, sending: true, disabled: true });
     axios
       .post("http://localhost:5000/api/products/categories", {
-        description: _.capitalize(this.state.description),
+        description: this.state.description,
         parent: this.props.parent !== undefined ? this.props.parent : "0"
       })
       .then(response => {

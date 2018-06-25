@@ -56,7 +56,10 @@ class CustomerAddForm extends React.Component {
     fd.map(elem => {
       return (data[elem.name] = elem.value);
     });
-    this.props.sendFormData("http://localhost:8081/customers", data);
+    this.props.sendFormData(
+      "http://deltomapi.herokuapp.com/api/customers",
+      data
+    );
   };
 
   render() {
@@ -287,4 +290,7 @@ class CustomerAddForm extends React.Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CustomerAddForm);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(CustomerAddForm);

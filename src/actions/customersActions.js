@@ -33,23 +33,25 @@ export const sendFormData = (url, data) => {
 
     axios
       .post(url, data, {
-        headers: { "Content-Type": "application/json" }
+        headers: {
+          "Content-type": "application/json"
+        }
       })
       .then(res => {
-        if (!res.data.success) {
+        if (res.data.status !== "ok") {
           dispatch(waitingResponse(false));
           dispatch(
             serverPostResponse({
-              status: res.data.response.status,
-              msg: res.data.response.msg
+              status: res.data.status,
+              msg: res.data.message
             })
           );
         } else {
           dispatch(waitingResponse(false));
           dispatch(
             serverPostResponse({
-              status: res.data.response.status,
-              msg: res.data.response.msg
+              status: "ready",
+              msg: res.data.message
             })
           );
         }

@@ -30,7 +30,8 @@ class CustomerNewAddressForm extends React.Component {
     const fd = Object.values(document.forms["addCustomerAddress"].elements);
     const data = {};
     const url =
-      "http://localhost:8081/customers/newaddress/" + this.props.customer;
+      "https://deltomapi.herokuapp.com/api/customers/newaddress/" +
+      this.props.customer;
     console.log(url);
     fd.map(elem => {
       return (data[elem.name] = elem.value);
@@ -162,6 +163,7 @@ class CustomerNewAddressForm extends React.Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(
-  CustomerNewAddressForm
-);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(CustomerNewAddressForm);

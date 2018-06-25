@@ -57,7 +57,7 @@ class CustomerAddForm extends React.Component {
       return (data[elem.name] = elem.value);
     });
     this.props.sendFormData(
-      "http://deltomapi.herokuapp.com/api/customers",
+      "https://deltomapi.herokuapp.com/api/customers",
       data
     );
   };

@@ -21,7 +21,7 @@ export default class CategoryField extends PureComponent {
     e.preventDefault();
     this.setState({ ready: false, sending: true, disabled: true });
     axios
-      .post("https://deltomapi.heroku.com/api/products/categories", {
+      .post("https://deltomapi.herokuapp.com/api/products/categories", {
         description: this.state.description,
         parent: this.props.parent !== undefined ? this.props.parent : "0"
       })

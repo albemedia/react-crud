@@ -30,7 +30,7 @@ class CategoriesList extends React.Component {
 
   updateList = () => {
     axios
-      .get("https://deltomapi.heroku.com/api/products/categories")
+      .get("https://deltomapi.herokuapp.com/api/products/categories")
       .then(res => {
         if (res.data.status === "ok") {
           this.setState({
@@ -50,7 +50,9 @@ class CategoriesList extends React.Component {
 
   deleteCategory = id => {
     axios
-      .get("https://deltomapi.heroku.com/api/products/categories/delete/" + id)
+      .get(
+        "https://deltomapi.herokuapp.com/api/products/categories/delete/" + id
+      )
       .then(res => {
         this.updateList();
       })

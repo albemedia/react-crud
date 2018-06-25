@@ -27,7 +27,7 @@ class CustomerList extends React.Component {
     };
   }
   componentDidMount() {
-    this.props.fetchCustomers("https://deltomapi.heroku.com/api/customers");
+    this.props.fetchCustomers("https://deltomapi.herokuapp.com/api/customers");
   }
 
   changeCurrentPage = (currentPage = 1) => {
@@ -36,7 +36,7 @@ class CustomerList extends React.Component {
 
   deleteCustomer = cuit => {
     axios
-      .delete("https://deltomapi.heroku.com/api/customers/" + cuit)
+      .delete("https://deltomapi.herokuapp.com/api/customers/" + cuit)
       .then(res => {
         if (res.data.success) {
           this.getCustomers();

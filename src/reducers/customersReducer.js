@@ -1,4 +1,10 @@
-import * as customerActionsTypes from "../actions/actionTypes";
+import {
+  FETCH_SUCCESS,
+  FETCHING_ERROR,
+  WAITING_RESPONSE,
+  SET_CURRENT_PAGE,
+  SERVER_POST_RESPONSE
+} from "../actions/actionTypes";
 
 const initialState = {
   data: [],
@@ -10,16 +16,16 @@ const initialState = {
 
 export default function customersReducer(state = initialState, action) {
   switch (action.type) {
-    case customerActionsTypes.FETCH_SUCCESS:
+    case FETCH_SUCCESS:
       return { ...state, data: action.data };
-    case customerActionsTypes.FETCHING_ERROR:
+    case FETCHING_ERROR:
       return { ...state, listFetchingError: action.bool };
-    case customerActionsTypes.WAITING_RESPONSE:
+    case WAITING_RESPONSE:
       return { ...state, waitingResponse: action.bool };
-    case customerActionsTypes.SET_CURRENT_PAGE:
+    case SET_CURRENT_PAGE:
       return { ...state, pagination: { currentPage: action.page } };
 
-    case customerActionsTypes.SERVER_POST_RESPONSE:
+    case SERVER_POST_RESPONSE:
       return { ...state, serverPostResponse: action.data };
     default:
       return state;

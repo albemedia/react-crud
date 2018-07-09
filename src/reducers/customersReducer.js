@@ -24,9 +24,23 @@ export default function customersReducer(state = initialState, action) {
       return { ...state, waitingResponse: action.bool };
     case SET_CURRENT_PAGE:
       return { ...state, pagination: { currentPage: action.page } };
-
     case SERVER_POST_RESPONSE:
       return { ...state, serverPostResponse: action.data };
+    case "ASYNC_PENDING":
+      return { ...state, waitingResponse: true };
+    case "ASYNC_FULFILLED":
+      return {
+        ...state,
+        data: action.payload.customers,
+        waitingResponse: false
+      };
+    case "ASYNC_REJECTED":
+      return {
+        ...state,
+        data: [],
+        listFetchingError: true,
+        waitingResponse: false
+      };
     default:
       return state;
   }

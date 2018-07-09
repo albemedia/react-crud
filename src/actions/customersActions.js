@@ -7,6 +7,11 @@ import {
 } from "./actionTypes";
 import axios from "axios";
 
+export const fetchTest = promise => ({
+  type: "ASYNC",
+  payload: promise
+});
+
 export const fetchCustomers = url => {
   return dispatch => {
     dispatch(waitingResponse(true));

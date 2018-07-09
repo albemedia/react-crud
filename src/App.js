@@ -1,5 +1,5 @@
 import React from "react";
-import { Redirect, BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import "./App.css";
 import CustomerList from "./components/Customers/CustomerList";
 import CustomerAddForm from "./components/Customers/CustomerAddForm";
@@ -31,7 +31,6 @@ class App extends React.Component {
                       component={CustomerInfo}
                     />
                     <Route path="/products/" component={CategoriesList} />
-                    <Redirect from="" to="/" />
                   </Switch>
                 </main>
               </div>

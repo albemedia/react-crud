@@ -1,11 +1,15 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import axios from "axios";
 import "./Customers.css";
 import Pagination from "./Pagination";
 import Loading from "../Loading/Loading";
-import { fetchCustomers, setCurrentPage } from "../../actions/customersActions";
+import {
+  fetchCustomers,
+  setCurrentPage,
+  fetchTest
+} from "../../actions/customersActions";
+import { customers } from "../../requests";
 
 const mapStateToProps = state => ({
   customerList: state.customers.data,
@@ -16,7 +20,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   fetchCustomers: url => dispatch(fetchCustomers(url)),
-  setCurrentPage: page => dispatch(setCurrentPage(page))
+  setCurrentPage: page => dispatch(setCurrentPage(page)),
+  fetchTesting: promise => dispatch(fetchTest(promise))
 });
 
 class CustomerList extends React.Component {
@@ -26,27 +31,12 @@ class CustomerList extends React.Component {
       itemsPerPage: 6
     };
   }
-  componentDidMount() {
-    this.props.fetchCustomers("https://deltomapi.herokuapp.com/api/customers");
+  componentWillMount() {
+    this.props.fetchTesting(customers.fetch("/customers"));
   }
 
   changeCurrentPage = (currentPage = 1) => {
     this.props.setCurrentPage(currentPage);
-  };
-
-  deleteCustomer = cuit => {
-    axios
-      .delete("https://deltomapi.herokuapp.com/api/customers/" + cuit)
-      .then(res => {
-        if (res.data.success) {
-          this.getCustomers();
-        } else {
-          alert("There was an error deleting this item");
-        }
-      })
-      .catch(error => {
-        alert("Ups! Sorry something bad happened");
-      });
   };
 
   render() {
